@@ -1,0 +1,15 @@
+
+
+@font-face {
+    font-family: 'Majesty';
+    src: url('./fonts/majesty.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Le Jour Serif';
+    src: url('./fonts/lejourserif.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }

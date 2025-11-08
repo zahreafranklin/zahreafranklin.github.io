@@ -1,0 +1,18 @@
+/* Animation for Hero Font section */
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px); /* Optional: adds a subtle movement */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-in {
+    animation: fadeIn 1.5s ease-in forwards;
+    opacity: 0; /* Start hidden */
+  }
+
+  

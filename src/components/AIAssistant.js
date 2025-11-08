@@ -51,7 +51,7 @@ const AIAssistant = () => {
 
   setLoading(true);
   try {
-    const result = await fetch("http://127.0.0.1:5050/api/ask", {
+    const result = await fetch("https://zahreafranklin-github-io.onrender.com/api/ask", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",

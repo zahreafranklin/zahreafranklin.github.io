@@ -1,7 +1,7 @@
 // pages/About.js
 import React from 'react';
 import { Box, Grid, Typography, Stack, Button, Paper } from '@mui/material';
-import './assets/fonts.css';
+import '../assets/fonts.css';
 
 const About = ({ isDarkMode }) => {
   return (

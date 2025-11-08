@@ -21,7 +21,7 @@ app.use(
 );
 
 // ✅ Handle Safari’s preflight requests cleanly
-app.options("*", cors());
+app.options(/.*/, cors());
 
 app.use(express.json());
 

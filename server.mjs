@@ -1,23 +1,37 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import fetch from 'node-fetch';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import fetch from "node-fetch";
 
 dotenv.config();
 
 const app = express();
-const PORT = 5050;
+const PORT = process.env.PORT || 5050;
 
-app.use(cors());
+// ✅ Explicit and Safari-safe CORS
+app.use(
+  cors({
+    origin: [
+      "https://zahreafranklin.github.io", // your live site
+      "http://localhost:3000",            // local dev
+    ],
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+// ✅ Handle Safari’s preflight requests cleanly
+app.options("*", cors());
+
 app.use(express.json());
 
-// ✅ Test route
-app.get('/test', (req, res) => {
-  res.send('✅ Test route is working!');
+// ✅ Test route (for quick checks)
+app.get("/test", (req, res) => {
+  res.send("✅ Test route is working!");
 });
 
 // 🤖 AI assistant route
-app.post('/api/ask', async (req, res) => {
+app.post("/api/ask", async (req, res) => {
   console.log("🌐 Incoming request: POST /api/ask");
 
   const prompt = req.body.prompt;
@@ -37,7 +51,7 @@ app.post('/api/ask', async (req, res) => {
         model: "gpt-3.5-turbo",
         messages: [
           { role: "system", content: "You are a helpful portfolio assistant." },
-          { role: "user", content: prompt }
+          { role: "user", content: prompt },
         ],
       }),
     });
@@ -59,6 +73,6 @@ app.post('/api/ask', async (req, res) => {
 
 // 🚀 Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://127.0.0.1:${PORT}`);
+  console.log(`🚀 Server is running on port ${PORT}`);
   console.log("🔐 Using OpenAI Key:", process.env.OPENAI_API_KEY?.slice(0, 10) + "...");
 });

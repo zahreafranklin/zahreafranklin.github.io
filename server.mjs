@@ -73,6 +73,6 @@ app.post("/api/ask", async (req, res) => {
 
 // 🚀 Start server
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`🚀 Server is running on port ${PORT}`);
+  console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
   console.log("🔐 Using OpenAI Key:", process.env.OPENAI_API_KEY?.slice(0, 10) + "...");
 });

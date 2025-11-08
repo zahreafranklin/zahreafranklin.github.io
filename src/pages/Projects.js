@@ -30,9 +30,10 @@ const Projects = ({ isDarkMode }) => {
     <Box 
       id="projects"
       sx={{ padding: "4rem 2rem", 
-      maxWidth: "1100px",
+      //maxWidth: "1100px",
        margin: "0 auto",
-       backgroundColor: 'background.default' }}>
+       backgroundColor: 'background.default',
+       }}>
        <Typography
         variant="h4"
         align="center"

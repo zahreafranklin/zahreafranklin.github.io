@@ -1,8 +1,22 @@
+# ─────────────────────────────────────────────
+#   Netlify Build Configuration – Zahrea Franklin Portfolio
+# ─────────────────────────────────────────────
+
 [build]
+  # Tell Netlify to serve your React build folder as the site
   publish = "build"
+
+  # Tell Netlify where your serverless functions live
   functions = "netlify/functions"
 
-[build.environment]
-  NODE_VERSION = "18"
+  # Lock the Node version to a stable LTS that works with React + gh-pages
+  [build.environment]
+    NODE_VERSION = "18"
 
-  
+# ─────────────────────────────────────────────
+#   Optional redirects (good for SPA routing)
+# ─────────────────────────────────────────────
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

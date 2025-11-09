@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Typography, Stack, Button } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
-import AIAssistant from '../components/AIAssistant';
-import Hero from '../components/Hero';
+import AIAssistant from '../components/AIAssistant.js';
+import Hero from '../components/Hero.js';
 import bground from '../images/bground.png';
 
 const Home = ({ isDarkMode }) => {

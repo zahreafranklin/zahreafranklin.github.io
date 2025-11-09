@@ -1,10 +1,9 @@
 import { aboutMe } from "./aboutMe.js";
 
 export async function handler(event) {
-  const headers = {
-  "Access-Control-Allow-Origin": event.headers.origin === "https://zahreafranklin.github.io"
-    ? "https://zahreafranklin.github.io"
-    : "https://zahreafranklin-ai.netlify.app",
+ const headers = {
+  "Access-Control-Allow-Origin": event.headers.origin || "*",
+  "Vary": "Origin",
   "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };

@@ -51,7 +51,7 @@ const AIAssistant = () => {
 
   setLoading(true);
   try {
-    const result = await fetch("https://zahreafranklin-ai.netlify.app/.netlify/functions/askAI", {
+    const result = await fetch("https://zahreafranklin-ai.netlify.app/.netlify/functions/askAi", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",

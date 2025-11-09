@@ -1,4 +1,7 @@
 export async function handler(event) {
+  console.log("🛰️ Incoming request headers:", event.headers);
+  console.log("🌍 Origin detected:", event.headers.origin);
+
   const allowedOrigins = [
     "https://zahreafranklin.github.io",
     "https://zahreafranklin-ai.netlify.app",

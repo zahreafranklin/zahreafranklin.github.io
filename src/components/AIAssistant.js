@@ -60,6 +60,7 @@ const AIAssistant = () => {
 });
 
 
+
     const data = await result.json();
     setResponse(data.response || "No response received.");
   } catch (error) {

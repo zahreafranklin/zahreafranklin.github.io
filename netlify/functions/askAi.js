@@ -1,34 +1,23 @@
-import fetch from "node-fetch";
 import { aboutMe } from "../../src/aboutMe.js";
 
 export async function handler(event) {
-  // ✅ Updated: broader CORS headers for Safari & iOS
   const headers = {
-    "Access-Control-Allow-Origin": "*", // allow all origins temporarily
+    "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, Authorization",
   };
 
-  // ✅ Handle Safari’s double preflight
   if (event.httpMethod === "OPTIONS") {
-    return {
-      statusCode: 200,
-      headers,
-      body: "CORS preflight OK",
-    };
+    return { statusCode: 204, headers };
+  }
+
+  const { prompt } = JSON.parse(event.body || "{}");
+  if (!prompt) {
+    return { statusCode: 400, headers, body: JSON.stringify({ error: "Prompt required" }) };
   }
 
   try {
-    const { prompt } = JSON.parse(event.body || "{}");
-
-    if (!prompt) {
-      return {
-        statusCode: 400,
-        headers,
-        body: JSON.stringify({ error: "Prompt required" }),
-      };
-    }
-
+    // ✅ Use the built-in global fetch (no import needed)
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -51,15 +40,12 @@ export async function handler(event) {
       headers,
       body: JSON.stringify({ response: data.choices?.[0]?.message?.content }),
     };
-  } catch (err) {
-    console.error("❌ Server error:", err);
+  } catch (error) {
+    console.error("❌ Server error:", error);
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({
-        error: "Server error",
-        details: err.message,
-      }),
+      body: JSON.stringify({ error: "Server error", details: error.message }),
     };
   }
 }

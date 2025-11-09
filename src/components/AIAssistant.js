@@ -92,7 +92,6 @@ const AIAssistant = () => {
           <AssistantIcon /> AI Assistant
         </DialogTitle>
         <center><i>Hi! I'm your AI Assistant and I'm here to help. </i></center>
-        <center><p>Try asking a question like "Who is Zahrea?"</p></center>
         <DialogContent>
           <TextField
             fullWidth

@@ -9,19 +9,17 @@ const Hero = () => {
     const words = ['SOFTWARE ENGINEER', 'FRONT-END DEVELOPER', 'TECH - FLUENCER', 'DATA ANALYST']; // Words to display
   const [currentWordIndex, setCurrentWordIndex] = useState(0); // Tracks the current word
   const [fade, setFade] = useState(true); // Controls the fade effect
+useEffect(() => {
+  const intervalId = setInterval(() => {
+    setFade(false);
+    setTimeout(() => {
+      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+      setFade(true);
+    }, 1000);
+  }, 3000);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setFade(false); // Start fading out
-      setTimeout(() => {
-        // Switch to the next word after fade-out completes
-        setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-        setFade(true); // Start fading in
-      }, 1000); // Match this to the fade-out animation duration
-    }, 3000); // Change word every 3 seconds
-
-    return () => clearInterval(intervalId); // Cleanup interval on unmount
-  }, []);
+  return () => clearInterval(intervalId);
+}, [words.length]);  // ✅ Added dependency
 
   return (
     <Box

@@ -2,14 +2,14 @@ import fetch from "node-fetch";
 import { aboutMe } from "../../src/aboutMe.js";
 
 export async function handler(event) {
-  // Set common headers once
+  // ✅ Safari + mobile-friendly CORS headers
   const headers = {
-    "Access-Control-Allow-Origin": "https://zahreafranklin.github.io", // ✅ your site
+    "Access-Control-Allow-Origin": "https://zahreafranklin.github.io",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
   };
 
-  // Handle Safari preflight OPTIONS request
+  // ✅ Handle Safari’s preflight check
   if (event.httpMethod === "OPTIONS") {
     return { statusCode: 200, headers, body: "OK" };
   }
@@ -44,15 +44,18 @@ export async function handler(event) {
 
     return {
       statusCode: 200,
-      headers, // ✅ include CORS headers here too
+      headers,
       body: JSON.stringify({ response: data.choices?.[0]?.message?.content }),
     };
   } catch (err) {
-    console.error("Server error:", err);
+    console.error("❌ Server error:", err);
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: "Server error", details: err.message }),
+      body: JSON.stringify({
+        error: "Server error",
+        details: err.message,
+      }),
     };
   }
 }

@@ -1,4 +1,4 @@
-import { aboutMe } from "../../src/aboutMe.js";
+import { aboutMe } from "./aboutMe.js";
 
 export async function handler(event) {
   const headers = {

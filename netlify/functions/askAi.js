@@ -2,16 +2,20 @@ import fetch from "node-fetch";
 import { aboutMe } from "../../src/aboutMe.js";
 
 export async function handler(event) {
-  // ✅ Safari + mobile-friendly CORS headers
+  // ✅ Updated: broader CORS headers for Safari & iOS
   const headers = {
-    "Access-Control-Allow-Origin": "https://zahreafranklin.github.io",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Origin": "*", // allow all origins temporarily
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
   };
 
-  // ✅ Handle Safari’s preflight check
+  // ✅ Handle Safari’s double preflight
   if (event.httpMethod === "OPTIONS") {
-    return { statusCode: 200, headers, body: "OK" };
+    return {
+      statusCode: 200,
+      headers,
+      body: "CORS preflight OK",
+    };
   }
 
   try {

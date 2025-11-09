@@ -2,12 +2,25 @@ import fetch from "node-fetch";
 import { aboutMe } from "../../src/aboutMe.js";
 
 export async function handler(event) {
+  // Set common headers once
+  const headers = {
+    "Access-Control-Allow-Origin": "https://zahreafranklin.github.io", // ✅ your site
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
+
+  // Handle Safari preflight OPTIONS request
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 200, headers, body: "OK" };
+  }
+
   try {
-    const { prompt } = JSON.parse(event.body);
+    const { prompt } = JSON.parse(event.body || "{}");
 
     if (!prompt) {
       return {
         statusCode: 400,
+        headers,
         body: JSON.stringify({ error: "Prompt required" }),
       };
     }
@@ -16,7 +29,7 @@ export async function handler(event) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`, // ✅ ONLY here
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
         model: "gpt-3.5-turbo",
@@ -31,9 +44,15 @@ export async function handler(event) {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ response: data.choices[0].message.content }),
+      headers, // ✅ include CORS headers here too
+      body: JSON.stringify({ response: data.choices?.[0]?.message?.content }),
     };
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+    console.error("Server error:", err);
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({ error: "Server error", details: err.message }),
+    };
   }
 }

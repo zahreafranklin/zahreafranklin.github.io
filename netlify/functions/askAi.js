@@ -1,13 +1,19 @@
-import { aboutMe } from "./aboutMe.js";
-
 export async function handler(event) {
- const headers = {
-  "Access-Control-Allow-Origin": event.headers.origin || "*",
-  "Vary": "Origin",
-  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization",
-};
+  const allowedOrigins = [
+    "https://zahreafranklin.github.io",
+    "https://zahreafranklin-ai.netlify.app",
+  ];
 
+  const origin = event.headers.origin;
+  const headers = {
+    "Access-Control-Allow-Origin": allowedOrigins.includes(origin)
+      ? origin
+      : "https://zahreafranklin-ai.netlify.app",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Allow-Credentials": "true",
+    "Vary": "Origin",
+  };
 
   if (event.httpMethod === "OPTIONS") {
     return { statusCode: 204, headers };
@@ -15,11 +21,14 @@ export async function handler(event) {
 
   const { prompt } = JSON.parse(event.body || "{}");
   if (!prompt) {
-    return { statusCode: 400, headers, body: JSON.stringify({ error: "Prompt required" }) };
+    return {
+      statusCode: 400,
+      headers,
+      body: JSON.stringify({ error: "Prompt required" }),
+    };
   }
 
   try {
-    // ✅ Use the built-in global fetch (no import needed)
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -29,7 +38,10 @@ export async function handler(event) {
       body: JSON.stringify({
         model: "gpt-3.5-turbo",
         messages: [
-          { role: "system", content: aboutMe },
+          {
+            role: "system",
+            content: `You are an AI portfolio assistant for Zahrea Franklin. Use the following context to answer questions accurately and warmly: ${aboutMe}`,
+          },
           { role: "user", content: prompt },
         ],
       }),

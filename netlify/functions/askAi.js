@@ -2,11 +2,10 @@ export async function handler(event) {
   console.log("🛰️ Incoming request headers:", event.headers);
   console.log("🌍 Origin detected:", event.headers.origin);
 
-  const allowedOrigins = [
-    "https://zahreafranklin.github.io",
-    "*",
-  ];
-
+ const allowedOrigins = [
+  "https://zahreafranklin.github.io",
+  "https://zahreafranklin-ai.netlify.app",
+];
   const origin = event.headers.origin;
   
   const headers = {
@@ -52,6 +51,8 @@ export async function handler(event) {
     });
 
     const data = await response.json();
+    
+    console.log("✅ OpenAI API call success:", JSON.stringify(data, null, 2));
 
     return {
       statusCode: 200,

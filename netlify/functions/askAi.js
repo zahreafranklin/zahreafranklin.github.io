@@ -4,19 +4,20 @@ export async function handler(event) {
 
   const allowedOrigins = [
     "https://zahreafranklin.github.io",
-    "https://zahreafranklin-ai.netlify.app",
+    "*",
   ];
 
   const origin = event.headers.origin;
+  
   const headers = {
-    "Access-Control-Allow-Origin": allowedOrigins.includes(origin)
-      ? origin
-      : "https://zahreafranklin-ai.netlify.app",
-    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
-    "Access-Control-Allow-Credentials": "true",
-    "Vary": "Origin",
-  };
+  "Access-Control-Allow-Origin": allowedOrigins.includes(origin)
+    ? origin
+    : "*",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  "Access-Control-Allow-Credentials": "true",
+  "Vary": "Origin",
+};
 
   if (event.httpMethod === "OPTIONS") {
     return { statusCode: 204, headers };

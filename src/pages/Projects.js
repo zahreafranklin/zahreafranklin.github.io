@@ -1,5 +1,14 @@
-import React from "react";
-import { Box, Typography, Button, Card, CardMedia, CardContent, Stack } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Box,
+  Typography,
+  Button,
+  Card,
+  CardMedia,
+  CardContent,
+  Stack,
+  Pagination,
+} from "@mui/material";
 
 const projects = [
   {
@@ -9,41 +18,73 @@ const projects = [
     description:
       "A data-driven exploration of how athleisure brands like SKIMS, Alo Yoga, and Lululemon evolved into modern luxury through pricing, popularity, and cultural influence.",
     image: "/imgs/datasci1.png",
-    notionLink: "https://www.notion.so/Analysis-on-Athleisure-Data-Deepdive-Project-2a434e51f39080b5b51ff1fe3e1b5391",
+    notionLink:
+      "https://www.notion.so/Analysis-on-Athleisure-Data-Deepdive-Project-2a434e51f39080b5b51ff1fe3e1b5391",
     githubLink: "https://github.com/zahreafranklin/athleisure-analysis",
-    substackLink: "https://zahreafranklin.substack.com/p/when-sweatpants-become-designer-is",
+    substackLink:
+      "https://zahreafranklin.substack.com/p/when-sweatpants-become-designer-is",
   },
   {
     title: "The Pretty Parlor",
     date: "February 2021",
     category: "Tech Stack: ReactJS, JavaScript, HTML / CSS",
     description:
-      "A modern and fully responsive ReactJS website mockup for a beauty parlor, featuring smooth animations, interactive navigation, and elegant UI elements designed to enhance the user experience and reflect the brand’s luxurious aesthetic. ",
+      "A modern and fully responsive ReactJS website mockup for a beauty parlor, featuring smooth animations, interactive navigation, and elegant UI elements designed to enhance the user experience and reflect the brand’s luxurious aesthetic.",
     image: "/imgs/swe1.png",
-    notionLink: "https://www.notion.so/The-Pretty-Parlor-Animated-React-Website-2a434e51f39080318f91e79a7b02a3fb",
+    notionLink:
+      "https://www.notion.so/The-Pretty-Parlor-Animated-React-Website-2a434e51f39080318f91e79a7b02a3fb",
     githubLink: "https://github.com/zahreafranklin/the-pretty-parlor-website",
-    
   },
+  
+  // add more projects as needed...
 ];
 
 const Projects = ({ isDarkMode }) => {
+  const [page, setPage] = useState(1);
+  const projectsPerPage = 3;
+
+  const startIndex = (page - 1) * projectsPerPage;
+  const selectedProjects = projects.slice(
+    startIndex,
+    startIndex + projectsPerPage
+  );
+  const totalPages = Math.ceil(projects.length / projectsPerPage);
+
+  const handleChange = (event, value) => {
+    setPage(value);
+    document
+      .getElementById("projects")
+      .scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
-    <Box 
+    <Box
       id="projects"
-      sx={{ padding: "4rem 2rem", 
-      //maxWidth: "1100px",
-       margin: "0 auto",
-       backgroundColor: 'background.default',
-       }}>
-       <Typography
+      sx={{
+        padding: "4rem 2rem",
+        margin: "0 auto",
+        backgroundColor: "background.default",
+      }}
+    >
+      <Typography
         variant="h4"
         align="center"
-        sx={{mb: 4, fontWeight:'200', fontSize:{ xs: '35px', sm: '45px', md: '40px', lg: '50px' }, fontFamily: 'Majesty'  }}
+        sx={{
+          mb: 4,
+          fontWeight: "200",
+          fontSize: {
+            xs: "35px",
+            sm: "45px",
+            md: "40px",
+            lg: "50px",
+          },
+          fontFamily: "Majesty",
+        }}
       >
-        my <Box component="span" sx={{ color: '#ff69b4' }}>projects</Box>
+        my <Box component="span" sx={{ color: "#ff69b4" }}>projects</Box>
       </Typography>
 
-      {projects.map((proj, index) => (
+      {selectedProjects.map((proj, index) => (
         <Card
           key={index}
           sx={{
@@ -76,7 +117,7 @@ const Projects = ({ isDarkMode }) => {
               variant="caption"
               sx={{ display: "block", color: "text.secondary", mb: 1 }}
             >
-            {proj.date} • {proj.category}
+              {proj.date} • {proj.category}
             </Typography>
             <Typography variant="body2" sx={{ color: "text.secondary", mb: 3 }}>
               {proj.description}
@@ -121,6 +162,18 @@ const Projects = ({ isDarkMode }) => {
           </CardContent>
         </Card>
       ))}
+
+      {/* Pagination control */}
+      {totalPages > 1 && (
+        <Box display="flex" justifyContent="center" mt={4}>
+          <Pagination
+            count={totalPages}
+            page={page}
+            onChange={handleChange}
+            color="primary"
+          />
+        </Box>
+      )}
     </Box>
   );
 };

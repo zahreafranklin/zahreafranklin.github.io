@@ -3,17 +3,17 @@ import './App.css';
 import './assets/fonts.css';
 import * as React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
-import theme from './theme.js';
-import darkTheme from './darkTheme.js';
+import theme from './theme';
+import darkTheme from './darkTheme';
 
-import ButtonAppBar from './components/ButtonAppBar.js';
-import NavBar from './components/NavBar.js';
+import ButtonAppBar from './components/ButtonAppBar';
+import NavBar from './components/NavBar';
 
-import Home from './pages/Home.js';
-import About from './pages/About.js';
-import Skills from './pages/Skills.js';
-import Projects from './pages/Projects.js';
-import Contact from './pages/Contact.js';
+import Home from './pages/Home';
+import About from './pages/About';
+import Skills from './pages/Skills';
+import Projects from './pages/Projects';
+import Contact from './pages/Contact';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = React.useState(false);

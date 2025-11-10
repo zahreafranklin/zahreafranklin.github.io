@@ -21,7 +21,8 @@ const projects = [
       "A modern and fully responsive ReactJS website mockup for a beauty parlor, featuring smooth animations, interactive navigation, and elegant UI elements designed to enhance the user experience and reflect the brand’s luxurious aesthetic. ",
     image: "/imgs/swe1.png",
     notionLink: "https://www.notion.so/The-Pretty-Parlor-Animated-React-Website-2a434e51f39080318f91e79a7b02a3fb",
-    githubLink: "https://github.com/yourname/flourish-tracker",
+    githubLink: "https://github.com/zahreafranklin/the-pretty-parlor-website",
+    
   },
 ];
 

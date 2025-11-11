@@ -147,7 +147,7 @@ const Contact = ({ isDarkMode }) => {
                 Let’s Get in Touch
               </Typography>
               <Typography variant="body1" gutterBottom sx={{ fontSize: '1rem' }}>
-                Thank you for wanting to reach out! My mailbox is always open — whether you have a question or just want to say hi, I'll try my best to get back to you!
+                Thank you for wanting to reach out! My mailbox is always open, whether you have a question or just want to say hi, I'll try my best to get back to you!
               </Typography>
               <Button
                 variant="contained"

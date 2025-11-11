@@ -77,7 +77,7 @@ const About = ({ isDarkMode }) => {
             See What I've Been Up To :
           </Typography>
           <Typography variant="body1" sx={{ mb: 3 }}>
-            Check out my GitHub to see my projects, grab a copy of my resume, or dive into my blog for a look at the stylish side of tech.
+            Check out my GitHub to see my projects, or dive into my Substack, The Stylish Scripts for a look at the stylish side of tech.
           </Typography>
 <Stack
     direction={{ xs: 'column', sm: 'row' }} // column on mobile, row on larger screens

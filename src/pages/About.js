@@ -102,11 +102,11 @@ const About = ({ isDarkMode }) => {
     <Button
       variant="contained"
       size="large"
-      href="/zahreafranklin_resume.pdf"
+      href="https://zahreafranklin.substack.com/"
       download
       sx={{ width: { xs: '100%', sm: 'auto' }, '&:hover': { backgroundColor: '#ffbad3' } }}
     >
-      Download Resume
+      Substack
     </Button>
   </Stack>
         </Grid>

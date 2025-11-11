@@ -24,8 +24,7 @@ const AIAssistant = () => {
       "I specialize in software engineering, web development and most recently, data sciene and analytics",
     "What is a tech-fluencer?":
       "A 'tech-fluencer' is a term I coined for myself since I also act as an influencer creating tech related content in my spare time",
-    "Can I see your resume?":
-      "Sure! You can find my resume on the 'Resume' section of my portfolio. Feel free to download it from there.",
+      
     "Do you offer freelance services?":
       "At this moment, no. However, I'm open to this being something I offer in the future.",
     "How can I contact you?":

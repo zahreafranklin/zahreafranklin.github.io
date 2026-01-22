@@ -12,6 +12,17 @@ import {
 
 const projects = [
   {
+    title: "Defying Data: Oz-Inspired Aesthetics & Outfits Analysis",
+    date: "December 2025",
+    category: "Tech Stack: Python, Pandas, Hugging Face, SQL",
+    description:
+      "A playful AI analysis to decode which Wicked character your outfit embodies",
+    image: "/imgs/datasci2.png",
+    notionLink:
+      "notion.so/Defying-Data-Oz-Inspired-Aesthetics-Outfit-Analysis-2da34e51f3908071a4cae08314ee4605?pvs=23",
+    githubLink: "https://github.com/zahreafranklin/ozifying-outfits",
+  },
+  {
     title: "Is Athleisure Now the New Luxury?",
     date: "November 2025",
     category: "Tech Stack: Python, Pandas, Matplotlib, Seaborn",
@@ -36,7 +47,6 @@ const projects = [
     githubLink: "https://github.com/zahreafranklin/the-pretty-parlor-website",
   },
   
-  // add more projects as needed...
 ];
 
 const Projects = ({ isDarkMode }) => {

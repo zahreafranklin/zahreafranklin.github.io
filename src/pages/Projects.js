@@ -18,8 +18,10 @@ const projects = [
     description:
       "A playful AI analysis to decode which Wicked character your outfit embodies",
     image: "/imgs/datasci2.png",
+    substackLink:
+      "https://zahreafranklin.substack.com/p/defying-data-oz-inspired-aesthetics",
     notionLink:
-      "notion.so/Defying-Data-Oz-Inspired-Aesthetics-Outfit-Analysis-2da34e51f3908071a4cae08314ee4605?pvs=23",
+      "https://www.notion.so/Defying-Data-Oz-Inspired-Aesthetics-Outfit-Analysis-2da34e51f3908071a4cae08314ee4605?pvs=23",
     githubLink: "https://github.com/zahreafranklin/ozifying-outfits",
   },
   {

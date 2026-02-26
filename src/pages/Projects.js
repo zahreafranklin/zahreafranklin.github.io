@@ -12,6 +12,19 @@ import {
 
 const projects = [
   {
+    title: "Betting on Style: What Trends To Look For In 2025",
+    date: "Feb 2026",
+    category: "Tech Stack: Python, Pandas",
+    description:
+      "Predicting which fashion trends will be 'the winning hand' this year 📈",
+    image: "/imgs/datasci3.png",
+    substackLink:
+      "https://zahreafranklin.substack.com/p/betting-on-style-what-trends-to-look",
+    notionLink:
+      "https://www.notion.so/Betting-on-Style-What-Trends-To-Look-For-In-2026-31334e51f39080d39480f26e3ed17e6b?source=copy_link",
+    githubLink: "https://github.com/zahreafranklin/",
+  },
+  {
     title: "Defying Data: Oz-Inspired Aesthetics & Outfits Analysis",
     date: "December 2025",
     category: "Tech Stack: Python, Pandas, Hugging Face, SQL",
@@ -44,6 +57,7 @@ const projects = [
     description:
       "A modern and fully responsive ReactJS website mockup for a beauty parlor, featuring smooth animations, interactive navigation, and elegant UI elements designed to enhance the user experience and reflect the brand’s luxurious aesthetic.",
     image: "/imgs/swe1.png",
+    liveSite:"https://the-pretty-parlor-react.netlify.app/",
     notionLink:
       "https://www.notion.so/The-Pretty-Parlor-Animated-React-Website-2a434e51f39080318f91e79a7b02a3fb",
     githubLink: "https://github.com/zahreafranklin/the-pretty-parlor-website",
@@ -144,10 +158,24 @@ const Projects = ({ isDarkMode }) => {
                   sx={{
                     backgroundColor: "#F16295",
                     textTransform: "none",
+                    color: "#fff",
                     "&:hover": { backgroundColor: "#FD93B9" },
                   }}
                 >
                   Read Article
+                </Button>
+              )}
+               {proj.liveSite && (
+                <Button
+                  variant="outlined"
+                  href={proj.liveSite}
+                  target="_blank"
+                  sx={{ backgroundColor: "#FD93B9",
+                    textTransform: "none",
+                    color:"#fff",
+                    "&:hover": { backgroundColor: "#F16295" },}}
+                >
+                  Live Site
                 </Button>
               )}
               {proj.githubLink && (
@@ -160,6 +188,7 @@ const Projects = ({ isDarkMode }) => {
                   View Code
                 </Button>
               )}
+        
               {proj.notionLink && (
                 <Button
                   variant="outlined"
